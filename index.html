@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Anir Boudalil</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Particules flottantes améliorées */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 0.7;
+            }
+            33% { 
+                transform: translateY(-30px) rotate(120deg) scale(1.2);
+                opacity: 1;
+            }
+            66% { 
+                transform: translateY(20px) rotate(240deg) scale(0.8);
+                opacity: 0.5;
+            }
+        }
+
+        /* Effet de vague animé */
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ff6b6b" fill-opacity="0.3" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,213.3C1248,235,1344,213,1392,202.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            animation: waveAnimation 15s linear infinite;
+        }
+
+        .wave2 {
+            animation-delay: -5s;
+            opacity: 0.5;
+            height: 120px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%234ecdc4" fill-opacity="0.2" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,213.3C1248,235,1344,213,1392,202.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+        }
+
+        .wave3 {
+            animation-delay: -2s;
+            opacity: 0.7;
+            height: 80px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%2345b7d1" fill-opacity="0.4" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,213.3C1248,235,1344,213,1392,202.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+        }
+
+        @keyframes waveAnimation {
+            0% { background-position-x: 0px; }
+            100% { background-position-x: 1440px; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Navigation rapide améliorée */
+        .quick-nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            animation: slideInRight 1s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .quick-nav a {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            margin: 8px 0;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
+        }
+
+        .quick-nav a:hover {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff9a3d 100%);
+            transform: translateX(-10px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .quick-nav i {
+            margin-right: 10px;
+            font-size: 1.2em;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-8px);
+            }
+            60% {
+                transform: translateY(-4px);
+            }
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            animation: slideDown 1s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 50%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 3s ease-in-out infinite alternate, floatTitle 6s ease-in-out infinite;
+        }
+
+        @keyframes floatTitle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes glow {
+            from { 
+                text-shadow: 0 0 10px rgba(106, 17, 203, 0.5),
+                           0 0 20px rgba(37, 117, 252, 0.3);
+            }
+            to { 
+                text-shadow: 0 0 20px rgba(106, 17, 203, 0.8),
+                           0 0 40px rgba(37, 117, 252, 0.6),
+                           0 0 60px rgba(255, 107, 107, 0.4);
+            }
+        }
+
+        h2 {
+            color: #6a11cb;
+            margin: 30px 0 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid;
+            border-image: linear-gradient(135deg, #6a11cb, #2575fc, #ff6b6b) 1;
+            animation: borderGlow 3s infinite alternate;
+        }
+
+        @keyframes borderGlow {
+            from { border-image-source: linear-gradient(135deg, #6a11cb, #2575fc); }
+            to { border-image-source: linear-gradient(135deg, #2575fc, #ff6b6b); }
+        }
+
+        h3 {
+            color: #2c3e50;
+            margin: 20px 0 15px;
+            font-size: 1.4em;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 35px;
+            margin-bottom: 35px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            margin: 15px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            border-left: 5px solid #6a11cb;
+        }
+
+        .info-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(106, 17, 203, 0.2);
+            border-left: 5px solid #ff6b6b;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .skill-item {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            border-left: 4px solid #2575fc;
+            animation: pulse 3s infinite;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px) rotate(2deg);
+            border-left: 4px solid #ff6b6b;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.2);
+        }
+
+        .project {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            border-left: 4px solid #4ecdc4;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .project:hover {
+            transform: translateX(10px);
+            border-left: 4px solid #ff6b6b;
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.3);
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .contact-item {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            border-top: 3px solid #45b7d1;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-8px);
+            border-top: 3px solid #ff6b6b;
+            box-shadow: 0 12px 30px rgba(69, 183, 209, 0.2);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin: 10px 5px;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff9a3d 100%);
+            transform: scale(1.1) rotate(3deg);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn i {
+            margin-right: 10px;
+            animation: spin 3s infinite linear;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            background: rgba(44, 62, 80, 0.9);
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Animation pour le bouton retour en haut */
+        .back-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(106, 17, 203, 0.4);
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 1000;
+            animation: bounce 2s infinite;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+        }
+
+        .back-to-top:hover {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff9a3d 100%);
+            transform: scale(1.2) rotate(360deg);
+            box-shadow: 0 12px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .quick-nav {
+                top: 10px;
+                right: 10px;
+                padding: 10px;
+            }
+            
+            .quick-nav a {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+            
+            header {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    <div class="wave"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+    
+    <div class="container">
+        <header>
+            <h1>ANIR BOUDALIL</h1>
+            <p>Étudiant en BTS SIO - Option SISR</p>
+        </header>
+
+        <!-- Navigation rapide -->
+        <div class="quick-nav">
+            <a href="#presentation"><i class="fas fa-user"></i> Présentation</a>
+            <a href="#competences"><i class="fas fa-laptop-code"></i> Compétences</a>
+            <a href="#projets"><i class="fas fa-project-diagram"></i> Projets</a>
+            <a href="#formation"><i class="fas fa-graduation-cap"></i> Formation</a>
+            <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+        </div>
+
+        <!-- Présentation -->
+        <section id="presentation" class="section">
+            <h2>PRÉSENTATION PERSONNELLE</h2>
+            <div class="info-card">
+                <h3>Informations Personnelles</h3>
+                <p><strong>Nom :</strong> Anir Boudalil</p>
+                <p><strong>Âge :</strong> 18 ans</p>
+                <p><strong>Date de naissance :</strong> 03 juillet 2006</p>
+            </div>
+            <div class="info-card">
+                <h3>Formation</h3>
+                <p><strong>Actuelle :</strong> BTS SIO – Option SISR</p>
+                <p><strong>Diplôme :</strong> Baccalauréat STMG obtenu</p>
+            </div>
+        </section>
+
+        <!-- Compétences -->
+        <section id="competences" class="section">
+            <h2>COMPÉTENCES INFORMATIQUES</h2>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <h3><i class="fas fa-server"></i> GLPI</h3>
+                    <p>Gestion de parc informatique</p>
+                </div>
+                <div class="skill-item">
+                    <h3><i class="fas fa-network-wired"></i> DNS Ubuntu</h3>
+                    <p>Avec interface Webmin</p>
+                </div>
+                <div class="skill-item">
+                    <h3><i class="fas fa-users-cog"></i> Active Directory</h3>
+                    <p>Windows Server 2019 avec multi-VM</p>
+                </div>
+                <div class="skill-item">
+                    <h3><i class="fas fa-desktop"></i> Virtualisation</h3>
+                    <p>Machines virtuelles</p>
+                </div>
+                <div class="skill-item">
+                    <h3><i class="fas fa-wifi"></i> Réseau</h3>
+                    <p>DHCP, DNS, infrastructure réseau</p>
+                </div>
+            </div>
+
+            <h2>COMPÉTENCES TRANSVERSALES</h2>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <h3><i class="fas fa-dumbbell"></i> Rigueur et Discipline</h3>
+                    <p>Rugby à haut niveau + musculation régulière</p>
+                </div>
+                <div class="skill-item">
+                    <h3><i class="fas fa-people-carry"></i> Travail d'Équipe</h3>
+                    <p>Prouvé en entreprise et en sport</p>
+                </div>
+                <div class="skill-item">
+                    <h3><i class="fas fa-user-check"></i> Autonomie</h3>
+                    <p>Gestion de projets comme le serveur DNS</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projets -->
+        <section id="projets" class="section">
+            <h2>PROJETS</h2>
+            <div class="project">
+                <h3><i class="fas fa-server"></i> Active Directory Windows Server 2019</h3>
+                <p>Projet avec amélioration multi-VM incluant la configuration des services, gestion des utilisateurs, groupes et stratégies de sécurité.</p>
+                <p><strong>Livrables :</strong> Documentation complète, scripts de configuration, démonstration vidéo</p>
+                <a href="#" class="btn"><i class="fas fa-eye"></i> Voir le projet</a>
+            </div>
+            <div class="project">
+                <h3><i class="fas fa-network-wired"></i> Serveur DNS Ubuntu avec Webmin</h3>
+                <p>Installation et configuration d'un serveur DNS avec interface d'administration Webmin.</p>
+                <p><strong>Livrables :</strong> Guide d'installation, scripts, documentation</p>
+                <a href="#" class="btn"><i class="fas fa-eye"></i> Voir le projet</a>
+            </div>
+        </section>
+
+        <!-- Formation -->
+        <section id="formation" class="section">
+            <h2>COURS BTS SIO</h2>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <h3><i class="fas fa-chart-line"></i> Analyse économique et juridique</h3>
+                    <p>Concepts fondamentaux appliqués au secteur informatique</p>
+                </div>
+                <div class="skill-item">
+                    <h3><i class="fas fa-code"></i> Algorithmique et programmation</h3>
+                    <p>Bases de programmation et structures de données</p>
+                </div>
+                <div class="skill-item">
+                    <h3><i class="fas fa-cogs"></i> Administration systèmes et réseaux</h3>
+                    <p>Installation et gestion d'infrastructures réseau</p>
+                </div>
+                <div class="skill-item">
+                    <h3><i class="fas fa-shield-alt"></i> Sécurité informatique</h3>
+                    <p>Politiques de sécurité et protection des données</p>
+                </div>
+                <div class="skill-item">
+                    <h3><i class="fas fa-cloud"></i> Virtualisation et cloud</h3>
+                    <p>Principes de virtualisation et services cloud</p>
+                </div>
+                <div class="skill-item">
+                    <h3><i class="fas fa-database"></i> Bases de données</h3>
+                    <p>Modélisation relationnelle et administration</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="section">
+            <h2>CONTACT</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3><i class="fas fa-envelope"></i> Email</h3>
+                    <p>anir.boudalil@example.com</p>
+                    <a href="mailto:anir.boudalil@example.com" class="btn"><i class="fas fa-paper-plane"></i> Envoyer un email</a>
+                </div>
+                <div class="contact-item">
+                    <h3><i class="fas fa-phone"></i> Téléphone</h3>
+                    <p>+33 1 23 45 67 89</p>
+                    <a href="tel:+33123456789" class="btn"><i class="fas fa-phone"></i> Appeler</a>
+                </div>
+                <div class="contact-item">
+                    <h3><i class="fab fa-linkedin"></i> LinkedIn</h3>
+                    <p>Profil professionnel</p>
+                    <a href="https://linkedin.com/in/anirboudalil" class="btn"><i class="fab fa-linkedin"></i> Voir le profil</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 Anir Boudalil - Tous droits réservés</p>
+        </footer>
+
+        <!-- Bouton retour en haut -->
+        <div class="back-to-top" id="backToTop">
+            <i class="fas fa-arrow-up"></i>
+        </div>
+    </div>
+
+    <script>
+        // Création de particules flottantes améliorées
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const colors = ['#6a11cb', '#2575fc', '#ff6b6b', '#4ecdc4', '#45b7d1', '#ff9a3d'];
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 15 + 5;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                particle.style.background = color;
+                particle.style.opacity = Math.random() * 0.6 + 0.2;
+                particle.style.animationDuration = `${Math.random() * 10 + 5}s`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Afficher le bouton retour en haut
+        window.addEventListener('scroll', function() {
+            const backToTopButton = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        // Scroll vers le haut
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Animation au défilement
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            // Observer les éléments pour l'animation
+            document.querySelectorAll('.section, .info-card, .skill-item, .project, .contact-item').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
